@@ -18,17 +18,18 @@ import org.springframework.stereotype.Component;
 @Path("/templateData")
 public class TemplateDataRestService {
 
-    private final TemplateDataController dataController;
+	private final TemplateDataController dataController;
 
-    @Autowired
-    public TemplateDataRestService(TemplateDataController dataController) {
-        this.dataController = dataController;
-    }
-    
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public TemplateData getTemplateData(){
-        return dataController.getCurrentData();
-    }
-    
+	@Autowired
+	public TemplateDataRestService(TemplateDataController dataController) {
+		this.dataController = dataController;
+	}
+
+	@GET
+	@Path("/current")
+	@Produces(MediaType.APPLICATION_JSON)
+	public TemplateData getTemplateData() {
+		return dataController.getCurrentData();
+	}
+
 }

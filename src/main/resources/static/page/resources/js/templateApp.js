@@ -3,6 +3,11 @@ var templateApp = {
 		if (document.getElementById(target)) {
 			$('#' + target).textfill();
 		}
+	},
+	loadData: function () {
+		$.get('/api/templateData/current', function (data) {
+
+		});
 	}
 }
 

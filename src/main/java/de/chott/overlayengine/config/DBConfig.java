@@ -12,11 +12,12 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class DBConfig {
-    @Bean
-    public DataSource dataSource(){
-        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-	        dataSourceBuilder.driverClassName("org.sqlite.JDBC");
-	        dataSourceBuilder.url("jdbc:sqlite:overlayEngine.db");
-            return dataSourceBuilder.build();
-    }
+
+	@Bean
+	public DataSource dataSource() {
+		DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
+		dataSourceBuilder.driverClassName("org.sqlite.JDBC");
+		dataSourceBuilder.url("jdbc:sqlite:overlayEngine.db");
+		return dataSourceBuilder.build();
+	}
 }
