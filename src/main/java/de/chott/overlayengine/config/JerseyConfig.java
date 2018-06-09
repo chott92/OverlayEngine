@@ -6,16 +6,20 @@
 package de.chott.overlayengine.config;
 
 import de.chott.overlayengine.rest.HelloRestService;
+import de.chott.overlayengine.rest.TestRunChangeRestService;
+import de.chott.overlayengine.rest.template.TemplateDataRestService;
 import javax.ws.rs.ApplicationPath;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ApplicationPath("/api")
-public class JerseyConfig extends ResourceConfig{
+public class JerseyConfig extends ResourceConfig {
 
-    public JerseyConfig() {
-        register(HelloRestService.class);
-    }   
-    
+	public JerseyConfig() {
+		register(HelloRestService.class);
+		register(TemplateDataRestService.class);
+		register(TestRunChangeRestService.class);
+	}
+
 }

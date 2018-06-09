@@ -26,7 +26,6 @@ public class TemplateDataRestService {
 	}
 
 	@GET
-	@Path("/current")
 	@Produces(MediaType.APPLICATION_JSON)
 	public TemplateData getTemplateData() {
 		return dataController.getCurrentData();
