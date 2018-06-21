@@ -4,9 +4,11 @@ import de.chott.overlayengine.model.database.RunInformation;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
 @Component
+@Transactional
 public class RunInformationService {
 
 	@PersistenceContext
