@@ -6,6 +6,7 @@
 package de.chott.overlayengine.config;
 
 import de.chott.overlayengine.rest.HelloRestService;
+import de.chott.overlayengine.rest.RunInformationRestService;
 import de.chott.overlayengine.rest.TestRunChangeRestService;
 import de.chott.overlayengine.rest.template.TemplateDataRestService;
 import javax.ws.rs.ApplicationPath;
@@ -20,6 +21,7 @@ public class JerseyConfig extends ResourceConfig {
 		register(HelloRestService.class);
 		register(TemplateDataRestService.class);
 		register(TestRunChangeRestService.class);
+		register(RunInformationRestService.class);
 	}
 
 }

@@ -1,3 +1,23 @@
 <h1>Run Information Overview</h1>
 
-<p> Run Information coming soon</p>
+<p> {{msg}}</p>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Game</th>
+			<th>Category</th>
+			<th>Runner</th>
+			<th>Platform</th>
+			<th>Estimate</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="runInformation in runInformations">
+			<td>{{runInformation.game}}</td>
+			<td>{{runInformation.category}}</td>
+			<td>{{runInformation.runnerName}}</td>
+			<td>{{runInformation.platform}}</td>
+			<td>{{runInformation.estimate}}</td>
+		</tr>
+	</tbody>
+</table>
