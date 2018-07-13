@@ -12,6 +12,11 @@ app.config(['$routeProvider',
                 controller: 'RunInformationOverviewController'
             })
 
+            .when('/runInformation', {
+                templateUrl: 'runInformation.htm',
+                controller: 'RunInformationController'
+            })
+
             .otherwise({redirectTo: '/'});
     }]);
 
@@ -26,4 +31,9 @@ app.controller('RunInformationOverviewController', function ($scope, $http) {
             $scope.runInformations = res.data;
             $scope.msg = '';
         });
+});
+
+app.controller('RunInformationController', function ($scope, $http) {
+    $scope.runInformationMode = 'Create';
+    $scope.runInformation = {};
 });
