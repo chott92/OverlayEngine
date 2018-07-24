@@ -1,27 +1,50 @@
 <h1>{{runInformationMode}} Run Information</h1>
+<form name="runInformationForm">
+	<div class="row">
+		<div class="col-lg-3">Game</div>
+		<div class="col-lg-6">
+			<input type="text" ng-model="runInformation.game" class="textField textInput"
+				   id="game" name= "game" required/>
+		</div>
+		<div class="col-lg-3 text-danger">{{msg.game}}</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-3">Category</div>
+		<div class="col-lg-6">
+			<input type="text" ng-model="runInformation.category" class="textField textInput"
+				   id="category" name="category" required/>
+		</div>
+		<div class="col-lg-3 text-danger">{{msg.category}}</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-3">Runner Name</div>
+		<div class="col-lg-6">
+			<input type="text" ng-model="runInformation.runnerName" class="textField textInput"
+				   id="runnerName" name="runnerName" required/>
+		</div>
+		<div class="col-lg-3 text-danger">{{msg.runnerName}}</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-3">Platform</div>
+		<div class="col-lg-6">
+			<input type="text" ng-model="runInformation.platform" class="textField textInput"
+				   id="platform" name="platform" required/>
+		</div>
+		<div class="col-lg-3 text-danger">{{msg.platform}}</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-3">Estimate</div>
+		<div class="col-lg-6">
+			<input type="text" ng-model="runInformation.estimate" class="textField textInput"
+				   id="estimate" name="estimate" required/>
+		</div>
+		<div class="col-lg-3 text-danger">{{msg.estimate}}</div>
+	</div>
+</form>
 <div class="row">
-	<div class="col-lg-3">Game</div>
-	<div class="col-lg-9"><input type="text" ng-bind="runInformation.game" class="textField textInput"/></div>
-</div>
-<div class="row">
-	<div class="col-lg-3">Category</div>
-	<div class="col-lg-9"><input type="text" ng-bind="runInformation.category" class="textField textInput"/></div>
-</div>
-<div class="row">
-	<div class="col-lg-3">Runner Name</div>
-	<div class="col-lg-9"><input type="text" ng-bind="runInformation.runnerName" class="textField textInput"/></div>
-</div>
-<div class="row">
-	<div class="col-lg-3">Platform</div>
-	<div class="col-lg-9"><input type="text" ng-bind="runInformation.platform" class="textField textInput"/></div>
-</div>
-<div class="row">
-	<div class="col-lg-3">Estimate</div>
-	<div class="col-lg-9"><input type="text" ng-bind="runInformation.estimate" class="textField textInput"/></div>
-</div>
-<div class="row">
-	<div class="col-12" style="text-align: right">
+	<div class="col-lg-9" style="text-align: right">
 		<a href="#!runInformationOverview" class="btn btn-danger">Abbrechen</a>
-		<button ng-click="saveInformation()" class="btn btn-success">Speichern</button>
+		<button ng-click="saveInformation()" class="btn btn-success"
+				ng-disabled="runInformationForm.$invalid">Speichern</button>
 	</div>
 </div>

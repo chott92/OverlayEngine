@@ -128,4 +128,11 @@ public class RunInformation extends AbstractEntity {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "RunInformation{" + "game=" + game + ", category=" + category + ", platform=" + platform
+				+ ", runnerName=" + runnerName + ", runnerTwitchName="
+				+ runnerTwitchName + ", estimate=" + estimate + '}';
+	}
+
 }

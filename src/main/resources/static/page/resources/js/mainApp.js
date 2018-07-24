@@ -37,8 +37,12 @@ app.controller('RunInformationOverviewController', function ($scope, $http) {
 app.controller('RunInformationController', function ($scope, $http, $location) {
 	$scope.runInformationMode = 'Create';
 	$scope.runInformation = {};
-
+	$scope.msg = {};
 	$scope.saveInformation = function () {
-		$location.path('/runInformationOverview')
+		console.log($scope.runInformation);
+		$http.post('/api/runInformation/save', $scope.runInformation)
+				.then(function (res) {
+					$location.path('/runInformationOverview');
+				});
 	};
 });
