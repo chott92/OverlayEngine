@@ -23,4 +23,8 @@ public class RunInformationService {
 				.getResultList();
 	}
 
+	public RunInformation findById(long id) {
+		return em.find(RunInformation.class, id);
+	}
+
 }

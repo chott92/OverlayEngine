@@ -17,6 +17,11 @@ app.config(['$routeProvider',
 					controller: 'RunInformationController'
 				})
 
+				.when('/runInformationEdit', {
+					templateUrl: 'runInformation.htm',
+					controller: 'RunInformationEditController'
+				})
+
 				.otherwise({redirectTo: '/'});
 	}]);
 
@@ -24,7 +29,7 @@ app.controller('DashboardController', function ($scope) {
 
 });
 
-app.controller('RunInformationOverviewController', function ($scope, $http) {
+app.controller('RunInformationOverviewController', function ($scope, $http, $location) {
 	$scope.msg = 'Loading data...';
 	$scope.test = 'hello world';
 	$http.get('/api/runInformation/all')
@@ -32,14 +37,34 @@ app.controller('RunInformationOverviewController', function ($scope, $http) {
 				$scope.runInformations = res.data;
 				$scope.msg = '';
 			});
+	$scope.editInformation = function (informationId) {
+		console.log(informationId)
+		$location.path('/runInformationEdit?id=' + informationId)
+	}
 });
 
 app.controller('RunInformationController', function ($scope, $http, $location) {
 	$scope.runInformationMode = 'Create';
 	$scope.runInformation = {};
-	$scope.msg = {};
 	$scope.saveInformation = function () {
-		console.log($scope.runInformation);
+		$http.post('/api/runInformation/save', $scope.runInformation)
+				.then(function (res) {
+					$location.path('/runInformationOverview');
+				});
+	};
+});
+
+app.controller('RunInformationEditController', function ($scope, $http, $location) {
+	$scope.runInformationMode = 'Create';
+	var runInformationId = $location.search().id;
+
+	$http.get('/api/runInformation/id/' + runInformationId)
+			.then(function (res) {
+				$scope.runInformation = res.data;
+				console.log($scope.runInformation);
+			});
+
+	$scope.saveInformation = function () {
 		$http.post('/api/runInformation/save', $scope.runInformation)
 				.then(function (res) {
 					$location.path('/runInformationOverview');
