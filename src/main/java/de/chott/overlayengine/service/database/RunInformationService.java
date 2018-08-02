@@ -27,4 +27,9 @@ public class RunInformationService {
 		return em.find(RunInformation.class, id);
 	}
 
+	public void deleteById(long id) {
+		RunInformation information = findById(id);
+		em.remove(information);
+	}
+
 }

@@ -39,6 +39,14 @@ public class RunInformationRestService {
 		return informationService.findById(id);
 	}
 
+	@GET
+	@Path("/delete/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<RunInformation> deleteById(@PathParam("id") long id) {
+		informationService.deleteById(id);
+		return getAll();
+	}
+
 	@POST
 	@Path("/save")
 	@Consumes(MediaType.APPLICATION_JSON)

@@ -22,13 +22,17 @@ app.config(['$routeProvider',
 					controller: 'RunInformationEditController'
 				})
 
+				.when('/runInformationDelete', {
+					templateUrl: 'confirmationDialog.htm',
+					controller: 'RunInformationDeleteConfirmationController'
+				})
+
 				.otherwise({redirectTo: '/'});
 	}]);
 
 app.controller('DashboardController', function ($scope) {
 
 });
-
 app.controller('RunInformationOverviewController', function ($scope, $http, $location) {
 	$scope.msg = 'Loading data...';
 	$scope.test = 'hello world';
@@ -42,7 +46,6 @@ app.controller('RunInformationOverviewController', function ($scope, $http, $loc
 		$location.path('/runInformationEdit?id=' + informationId)
 	}
 });
-
 app.controller('RunInformationController', function ($scope, $http, $location) {
 	$scope.runInformationMode = 'Create';
 	$scope.runInformation = {};
@@ -53,7 +56,6 @@ app.controller('RunInformationController', function ($scope, $http, $location) {
 				});
 	};
 });
-
 app.controller('RunInformationEditController', function ($scope, $http, $location) {
 	$scope.runInformationMode = 'Create';
 	var runInformationId = $location.search().id;
@@ -70,4 +72,22 @@ app.controller('RunInformationEditController', function ($scope, $http, $locatio
 					$location.path('/runInformationOverview');
 				});
 	};
+});
+app.controller('RunInformationDeleteConfirmationController', function ($scope, $http, $location) {
+	var runInformationId = $location.search().id;
+	$scope.header = 'Run Löschen';
+
+	$http.get('/api/runInformation/id/' + runInformationId)
+			.then(function (res) {
+				$scope.runInformation = res.data;
+				$scope.message = 'Den Run zu ' + $scope.runInformation.game + ' von '
+						+ $scope.runInformation.runnerName + ' wirklich löschen?';
+			});
+
+	$scope.confirm = function () {
+		$http.get('/api/runInformation/delete/' + runInformationId)
+				.then(function (res) {
+					$location.path('/runInformationOverview');
+				});
+	}
 });
