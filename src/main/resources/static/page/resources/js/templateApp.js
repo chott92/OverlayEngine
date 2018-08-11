@@ -17,6 +17,7 @@ var templateApp = {
 		templateApp.updateField('game', currentRunData.game);
 		templateApp.updateField('runnerName', currentRunData.runnerName);
 		templateApp.updateField('category', currentRunData.category);
+		templateApp.updateField('platform', currentRunData.platform);
 	},
 	updateField: function (divId, newValue) {
 		if (document.getElementById(divId)) {

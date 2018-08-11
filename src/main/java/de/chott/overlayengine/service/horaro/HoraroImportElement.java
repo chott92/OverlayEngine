@@ -27,15 +27,20 @@ class HoraroImportElement implements Comparable<HoraroImportElement> {
 	}
 
 	private String getEstimate(JSONObject gameObject, Map<String, Integer> columnOrderMap) {
+		String estimateString;
 		if (columnOrderMap.containsKey(HoraroImportUtils.ESTIMATE_KEY)) {
-			return gameObject.getJSONArray("data")
-					.getString(columnOrderMap.get(HoraroImportUtils.ESTIMATE_KEY))
-					.replace("00:", "");
+			estimateString = gameObject.getJSONArray("data")
+					.getString(columnOrderMap.get(HoraroImportUtils.ESTIMATE_KEY));
 		} else {
-			return LocalTime.ofSecondOfDay(gameObject.getInt("length_t"))
-					.toString()
-					.replace("00:", "");
+			estimateString = LocalTime.ofSecondOfDay(gameObject.getInt("length_t"))
+					.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 		}
+
+		while (estimateString.startsWith("00:")) {
+			estimateString = estimateString.substring(3);
+		}
+
+		return estimateString;
 	}
 
 	private String getValueFromData(JSONObject gameObject, Map<String, Integer> columnOrderMap, String key) {
