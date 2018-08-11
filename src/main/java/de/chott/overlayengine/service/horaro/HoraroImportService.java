@@ -18,7 +18,11 @@ import org.json.JSONObject;
 
 public class HoraroImportService {
 
-	public void loadDataFromHoraro(String jsonUrl, Map<String, String> valueKeyMap) {
+	public List<RunInformation> loadDataFromHoraro(HoraroImportConfig config) {
+		return loadDataFromHoraro(config.getScheduleURL(), config.getPropertyKeyMap());
+	}
+
+	public List<RunInformation> loadDataFromHoraro(String jsonUrl, Map<String, String> valueKeyMap) {
 		String jsonData = getJsonData(jsonUrl);
 		JSONObject jsonObject = new JSONObject(jsonData);
 
@@ -26,7 +30,7 @@ public class HoraroImportService {
 
 		List<RunInformation> newRunInformations = getNewRunInformations(jsonObject, columnOrderMap);
 
-		System.out.println(jsonData);
+		return newRunInformations;
 	}
 
 	private String getJsonData(String jsonUrl) {

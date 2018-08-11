@@ -2,6 +2,8 @@ package de.chott.overlayengine.rest;
 
 import de.chott.overlayengine.model.database.RunInformation;
 import de.chott.overlayengine.service.database.RunInformationService;
+import de.chott.overlayengine.service.horaro.HoraroImportConfig;
+import de.chott.overlayengine.service.horaro.HoraroImportService;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -19,10 +21,13 @@ import org.springframework.stereotype.Component;
 public class RunInformationRestService {
 
 	private final RunInformationService informationService;
+	private final HoraroImportService horaroImportService;
 
 	@Autowired
-	public RunInformationRestService(RunInformationService informationService) {
+	public RunInformationRestService(RunInformationService informationService,
+			HoraroImportService horaroImportService) {
 		this.informationService = informationService;
+		this.horaroImportService = horaroImportService;
 	}
 
 	@GET
@@ -53,6 +58,16 @@ public class RunInformationRestService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public RunInformation save(RunInformation runInformation) {
 		return informationService.save(runInformation);
+	}
+
+	@POST
+	@Path("/horaroImport")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<RunInformation> importHoraroSchedule(HoraroImportConfig importConfig) {
+		List<RunInformation> dataFromHoraro = horaroImportService.loadDataFromHoraro(importConfig);
+
+		return dataFromHoraro;
 	}
 
 }
