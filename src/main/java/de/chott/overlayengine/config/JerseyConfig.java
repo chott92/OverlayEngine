@@ -5,7 +5,7 @@
  */
 package de.chott.overlayengine.config;
 
-import de.chott.overlayengine.rest.HelloRestService;
+import de.chott.overlayengine.rest.DashboardRestService;
 import de.chott.overlayengine.rest.RunInformationRestService;
 import de.chott.overlayengine.rest.TestRunChangeRestService;
 import de.chott.overlayengine.rest.template.TemplateDataRestService;
@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
 public class JerseyConfig extends ResourceConfig {
 
 	public JerseyConfig() {
-		register(HelloRestService.class);
+		register(DashboardRestService.class);
 		register(TemplateDataRestService.class);
 		register(TestRunChangeRestService.class);
 		register(RunInformationRestService.class);

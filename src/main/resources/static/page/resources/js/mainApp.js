@@ -30,8 +30,30 @@ app.config(['$routeProvider',
 				.otherwise({redirectTo: '/'});
 	}]);
 
-app.controller('DashboardController', function ($scope) {
+app.controller('DashboardController', function ($scope, $http) {
+	$http.get('/api/dashboard/currentActiveRun')
+			.then(function (res) {
+				$scope.currentActiveRun = res.data;
+			});
+	$http.get('/api/runInformation/all')
+			.then(function (res) {
+				$scope.runInformations = res.data;
+			});
 
+	$scope.setNextTemplateRun = function () {
+		if ($scope.nextTemplateRun) {
+			$http.post('/api/dashboard/currentActiveRun/' + $scope.nextTemplateRun.id)
+					.then(function (res) {
+						$scope.currentActiveRun = res.data;
+					});
+		} else {
+			console.log('FAIL')
+		}
+	};
+
+	$scope.getRunInformationString = function (info) {
+		return info.game + ' (' + info.category + ')';
+	}
 });
 app.controller('RunInformationOverviewController', function ($scope, $http, $location) {
 	$scope.msg = 'Loading data...';
