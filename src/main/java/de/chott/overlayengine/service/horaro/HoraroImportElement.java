@@ -76,7 +76,7 @@ class HoraroImportElement implements Comparable<HoraroImportElement> {
 	}
 
 	RunInformation toRunInformation(int orderIndex) {
-		return new RunInformation(game, category, platform, runnerName, null, estimate);
+		return new RunInformation(game, category, platform, runnerName, null, estimate, orderIndex);
 	}
 
 	@Override

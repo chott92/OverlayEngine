@@ -7,11 +7,15 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name = RunInformation.FIND_ALL, query = "SELECT ri FROM RunInformation ri")
+	@NamedQuery(name = RunInformation.FIND_ALL, query = "SELECT ri FROM RunInformation ri order by ri.orderIndex")
+	,
+	@NamedQuery(name = RunInformation.FIND_AFTER_ORDER_INDEX,
+			query = "SELECT ri FROM RunInformation ri WHERE ri.orderIndex > :paramIndex order by ri.orderIndex")
 })
 public class RunInformation extends AbstractEntity {
 
 	public static final String FIND_ALL = "RunInformation.findAll";
+	public static final String FIND_AFTER_ORDER_INDEX = "RunInformation.findAfterOrderIndex";
 
 	private static final long serialVersionUID = 54861326468523L;
 
@@ -21,18 +25,20 @@ public class RunInformation extends AbstractEntity {
 	private String runnerName;
 	private String runnerTwitchName;
 	private String estimate;
+	private int orderIndex;
 
 	public RunInformation() {
 	}
 
 	public RunInformation(String game, String category, String platform, String runnerName,
-			String runnerTwitchName, String estimate) {
+			String runnerTwitchName, String estimate, int orderIndex) {
 		this.game = game;
 		this.category = category;
 		this.platform = platform;
 		this.runnerName = runnerName;
 		this.runnerTwitchName = runnerTwitchName;
 		this.estimate = estimate;
+		this.orderIndex = orderIndex;
 	}
 
 	public String getGame() {
@@ -81,6 +87,14 @@ public class RunInformation extends AbstractEntity {
 
 	public void setEstimate(String estimate) {
 		this.estimate = estimate;
+	}
+
+	public int getOrderIndex() {
+		return orderIndex;
+	}
+
+	public void setOrderIndex(int orderIndex) {
+		this.orderIndex = orderIndex;
 	}
 
 	@Override

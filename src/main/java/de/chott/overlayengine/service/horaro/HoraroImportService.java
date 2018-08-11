@@ -4,12 +4,15 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
+import de.chott.overlayengine.model.database.RunInformation;
 import static de.chott.overlayengine.service.horaro.HoraroImportUtils.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -20,7 +23,8 @@ public class HoraroImportService {
 		JSONObject jsonObject = new JSONObject(jsonData);
 
 		Map<String, Integer> columnOrderMap = getColumnOrderMap(jsonObject, valueKeyMap);
-		List<HoraroImportElement> importElements = getInputElements(jsonObject, columnOrderMap);
+
+		List<RunInformation> newRunInformations = getNewRunInformations(jsonObject, columnOrderMap);
 
 		System.out.println(jsonData);
 	}
@@ -60,6 +64,17 @@ public class HoraroImportService {
 		});
 
 		return columnOrderMap;
+	}
+
+	private List<RunInformation> getNewRunInformations(JSONObject jsonObject, Map<String, Integer> columnOrderMap) {
+		List<HoraroImportElement> importElements = getInputElements(jsonObject, columnOrderMap);
+
+		final List<HoraroImportElement> sortedElements = importElements.stream()
+				.sorted()
+				.collect(Collectors.toList());
+
+		return sortedElements.stream().map(element -> element.toRunInformation(sortedElements.indexOf(element)))
+				.collect(Collectors.toList());
 	}
 
 	private List<HoraroImportElement> getInputElements(JSONObject jsonObject, Map<String, Integer> columnOrderMap) {
