@@ -17,7 +17,7 @@ public class RunInformationService {
 	public RunInformation save(RunInformation information) {
 		if (information.getId() == 0 && information.getOrderIndex() == 0) {
 			int newOrderIndex = findAll().stream().mapToInt(RunInformation::getOrderIndex)
-					.max().getAsInt() + 1;
+					.max().orElse(-1) + 1;
 			information.setOrderIndex(newOrderIndex);
 		}
 		return em.merge(information);

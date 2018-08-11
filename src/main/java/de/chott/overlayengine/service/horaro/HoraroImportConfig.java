@@ -1,5 +1,7 @@
 package de.chott.overlayengine.service.horaro;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 public class HoraroImportConfig {
@@ -32,7 +34,13 @@ public class HoraroImportConfig {
 	}
 
 	public Map<String, String> getPropertyKeyMap() {
-		return null;
+		Map<String, String> propertyKeyMap = new HashMap<>();
+
+		Arrays.stream(properties.split("\\n"))
+				.map(s -> s.split(":"))
+				.forEach(row -> propertyKeyMap.put(row[0], row[1]));
+
+		return propertyKeyMap;
 	}
 
 }

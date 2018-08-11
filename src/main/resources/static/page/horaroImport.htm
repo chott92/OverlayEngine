@@ -1,0 +1,26 @@
+<h1>Horaro Import</h1>
+<form name="horaroImportForm">
+
+	<div class="row">
+		<div class="col-lg-3">URL zum JSON-Schedule</div>
+		<div class="col-lg-6">
+			<input type="text" ng-model="jsonUrl" class="textField textInput"
+				   id="jsonUrl" name= "jsonUrl" required/>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-3">Parameter:</div>
+		<div class="col-lg-6">
+			<textarea ng-model="valueKeyProperties" class="textField textInput"
+					  id="params" name= "params" required></textarea>
+		</div>
+	</div>
+</form>
+<div class="row">
+	<div class="col-lg-9" style="text-align: right">
+		<a href="#!runInformationOverview" class="btn btn-danger">Abbrechen</a>
+		<button ng-click="startImport()" class="btn btn-success"
+				ng-disabled="horaroImportForm.$invalid">Import starten</button>
+	</div>
+</div>
+<p class="text-warning">{{message}}</p>

@@ -5,6 +5,7 @@ import de.chott.overlayengine.service.database.RunInformationService;
 import de.chott.overlayengine.service.horaro.HoraroImportConfig;
 import de.chott.overlayengine.service.horaro.HoraroImportService;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -67,7 +68,13 @@ public class RunInformationRestService {
 	public List<RunInformation> importHoraroSchedule(HoraroImportConfig importConfig) {
 		List<RunInformation> dataFromHoraro = horaroImportService.loadDataFromHoraro(importConfig);
 
-		return dataFromHoraro;
+		informationService.findAll().stream()
+				.mapToLong(RunInformation::getId)
+				.forEach(informationService::deleteById);
+
+		return dataFromHoraro.stream()
+				.map(informationService::save)
+				.collect(Collectors.toList());
 	}
 
 }

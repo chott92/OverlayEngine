@@ -27,6 +27,10 @@ app.config(['$routeProvider',
 					controller: 'RunInformationDeleteConfirmationController'
 				})
 
+				.when('/horaroImport', {
+					templateUrl: 'horaroImport.htm',
+					controller: 'HoraroImportController'
+				})
 				.otherwise({redirectTo: '/'});
 	}]);
 
@@ -111,5 +115,20 @@ app.controller('RunInformationDeleteConfirmationController', function ($scope, $
 				.then(function (res) {
 					$location.path('/runInformationOverview');
 				});
+	}
+});
+app.controller('HoraroImportController', function ($scope, $http, $location) {
+	$scope.message = '';
+
+	$scope.startImport = function () {
+		$scope.message = 'Import started. This can take a few seconds, please wait. You will be redirected on success';
+		var postObject = {};
+		postObject.scheduleURL = $scope.jsonUrl;
+		postObject.properties = $scope.valueKeyProperties;
+		$http.post('/api/runInformation/horaroImport', postObject)
+				.then(function (res) {
+					$location.path('/runInformationOverview');
+				});
+
 	}
 });
