@@ -11,7 +11,7 @@ var templateApp = {
 		});
 	},
 	updateFields: function (data) {
-		var currentRunData = templateApp.adjustRunnerNames(data.currentRun, data.isNamesSwapped);
+		var currentRunData = templateApp.adjustRunnerNames(data.currentRun, data.runnerNamesSwapped);
 		templateApp.updateField('runnerOne', currentRunData.runnerOne);
 		templateApp.updateField('runnerTwo', currentRunData.runnerTwo);
 		templateApp.updateField('estimate', currentRunData.estimate);

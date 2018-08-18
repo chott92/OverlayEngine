@@ -45,4 +45,9 @@ public class DashboardRestService {
 		return templateDataController.getCurrentData().getCurrentRun();
 	}
 
+	@POST
+	@Path("/swapRaceRunnerNames")
+	public void swapRaceRunnerNames() {
+		templateDataController.swapRaceRunnerNames();
+	}
 }

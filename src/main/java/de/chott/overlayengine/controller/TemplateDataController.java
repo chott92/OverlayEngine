@@ -29,8 +29,8 @@ public class TemplateDataController {
 	public void setCurrentRun(RunInformation information) {
 		currentData.setCurrentRun(information);
 
-		List<RunInformation> followingRuns =
-				runInformationService.findRunsAfterOrderIndex(information.getOrderIndex());
+		List<RunInformation> followingRuns
+				= runInformationService.findRunsAfterOrderIndex(information.getOrderIndex());
 
 		if (followingRuns.size() > 0) {
 			currentData.setNextRun(followingRuns.get(0));
@@ -40,5 +40,9 @@ public class TemplateDataController {
 		}
 
 		Logger.getLogger(this.getClass().getName()).info("Changed the run to " + information.getGame());
+	}
+
+	public void swapRaceRunnerNames() {
+		currentData.swapRunnerNames();
 	}
 }
