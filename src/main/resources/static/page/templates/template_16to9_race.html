@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <title>Template 16 zu 9</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="../resources/css/template.css" rel="stylesheet" type="text/css"/>
+		<script src="../resources/js/lib/jquery.js" type="text/javascript"></script>
+		<script src="../resources/js/lib/jquery.textfill.min.js" type="text/javascript"></script>
+		<script src="../resources/js/templateRaceApp.js" type="text/javascript"></script>
+        <style>
+            body{
+				background-image: url(../resources/img/template/16zu9_Race.png);
+				background-repeat: no-repeat;
+				width: 1920px;
+				height:1080px;
+				font-family: GermenchMonopoly,sans-serif;
+            }
+			.textField{
+				text-align: center;
+				font-weight: bold;
+				/*border:1px solid black;*/
+			}
+			#runnerOne{
+				position: absolute;
+				left: 80px;
+				top: 611px;
+				width: 450px;
+				height: 35px;
+			}
+			#runnerTwo{
+				position: absolute;
+				left: 1390px;
+				top: 611px;
+				width: 450px;
+				height: 35px;
+			}
+			#game{
+				position: absolute;
+				left: 140px;
+				top: 800px;
+				width: 350px;
+				height: 30px;
+			}
+			#estimate{
+				position: absolute;
+				left: 25px;
+				top: 810px;
+				width: 110px;
+				height: 20px;
+			}
+			#platform{
+				position: absolute;
+				left: 500px;
+				top: 810px;
+				width: 120px;
+				height: 20px;
+			}
+			#category{
+				position: absolute;
+				left: 65px;
+				top: 880px;
+				width: 500px;
+				height: 45px;
+			}
+        </style>
+    </head>
+    <body>
+		<div id="runnerOne" class="textField"><span>RUNNER1</span></div>
+		<div id="runnerTwo" class="textField"><span>RUNNER2</span></div>
+		<div id="estimate" class="textField"><span>ESTIMATE</span></div>
+		<div id="game" class="textField"><span>GAME</span></div>
+		<div id="category" class="textField"><span>CATEGORY</span></div>
+		<div id="platform" class="textField"><span>PLATFORM</span></div>
+    </body>
+</html>
