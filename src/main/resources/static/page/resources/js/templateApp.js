@@ -3,14 +3,25 @@ var templateApp = {
 	inventiveFeedURL: "",
 	resizeField: function (target) {
 		if (document.getElementById(target)) {
-			$('#' + target).textfill();
+			var target = $('#' + target);
+			var options = {success: function () {
+					let outerHeight = target.height();
+					let child = target.children('span').first();
+					let innerHeight = child.height();
+					let padding = (outerHeight - innerHeight) / 2;
+					let targetMargin = padding + 'px';
+					console.log(child);
+					target.css('padding-top', targetMargin);
+					target.height(outerHeight - padding);
+				}
+			};
+			target.textfill(options);
 		}
 	},
 	initFields: function (data) {
 		console.log('fields are initiated')
 		templateApp.donationURL = data.donationUrl;
 		templateApp.inventiveFeedURL = data.incentiveFeedUrl;
-
 		templateApp.resizeField('incentives');
 	},
 	loadData: function (callback) {
@@ -29,7 +40,6 @@ var templateApp = {
 		templateApp.updateField('game', currentRunData.game);
 		templateApp.updateField('category', currentRunData.category);
 		templateApp.updateField('platform', currentRunData.platform);
-
 		if (data.nextRun) {
 			templateApp.updateField('nextRun', data.nextRun.game);
 		}
@@ -49,7 +59,6 @@ $(function () {
 	templateApp.resizeField('game');
 	templateApp.resizeField('platform');
 	templateApp.resizeField('category');
-
 	templateApp.loadData(templateApp.initFields);
 	setInterval(function () {
 		templateApp.loadData()
