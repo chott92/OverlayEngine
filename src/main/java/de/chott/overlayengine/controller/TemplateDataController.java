@@ -3,6 +3,7 @@ package de.chott.overlayengine.controller;
 import de.chott.overlayengine.model.database.RunInformation;
 import de.chott.overlayengine.model.template.TemplateData;
 import de.chott.overlayengine.service.RunDataServiceMockup;
+import de.chott.overlayengine.service.config.ConfigService;
 import de.chott.overlayengine.service.database.RunInformationService;
 import java.util.List;
 import org.jboss.logging.Logger;
@@ -16,9 +17,11 @@ public class TemplateDataController {
 	private final RunInformationService runInformationService;
 
 	@Autowired
-	public TemplateDataController(RunDataServiceMockup mockup, RunInformationService runInformationService) {
+	public TemplateDataController(RunDataServiceMockup mockup, RunInformationService runInformationService,
+			ConfigService configService) {
 		currentData = new TemplateData();
 		currentData.setCurrentRun(mockup.getNextInformation());
+
 		this.runInformationService = runInformationService;
 	}
 
@@ -45,4 +48,5 @@ public class TemplateDataController {
 	public void swapRaceRunnerNames() {
 		currentData.swapRunnerNames();
 	}
+
 }

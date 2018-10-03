@@ -8,6 +8,8 @@ public class TemplateData {
 	private RunInformation nextRun;
 	private RunInformation afterNextRun;
 	private boolean runnerNamesSwapped;
+	private String incentiveFeed;
+	private String donationFeed;
 
 	public TemplateData() {
 	}
@@ -42,6 +44,22 @@ public class TemplateData {
 
 	public void swapRunnerNames() {
 		runnerNamesSwapped = !runnerNamesSwapped;
+	}
+
+	public String getIncentiveFeed() {
+		return incentiveFeed;
+	}
+
+	public void setIncentiveFeed(String incentiveFeed) {
+		this.incentiveFeed = incentiveFeed;
+	}
+
+	public String getDonationFeed() {
+		return donationFeed;
+	}
+
+	public void setDonationFeed(String donationFeed) {
+		this.donationFeed = donationFeed;
 	}
 
 }
