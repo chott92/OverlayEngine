@@ -54,9 +54,9 @@ var templateApp = {
 		}
 	},
 	updateDonationAmount: function (donationAmount) {
-		var counter = new CountUp("donationAmount", templateApp.currentDonationAmount, donationAmount, 2);
+		var counter = new CountUp("donation", templateApp.currentDonationAmount, donationAmount, 2);
 		counter.start(function () {
-			originAmount = targetAmount;
+			templateApp.currentDonationAmount = donationAmount;
 		});
 	}
 }
