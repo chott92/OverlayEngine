@@ -1,6 +1,7 @@
 var templateApp = {
 	donationURL: "",
 	inventiveFeedURL: "",
+	currentDonationAmount: 0.0,
 	resizeField: function (target) {
 		if (document.getElementById(target)) {
 			$('#' + target).textfill();
@@ -20,6 +21,7 @@ var templateApp = {
 				callback(data);
 			}
 			templateApp.updateFields(data);
+			templateApp.updateDonationAmount(data.donationFeed);
 		});
 	},
 	updateFields: function (data) {
@@ -40,6 +42,12 @@ var templateApp = {
 			target.html('<span>' + newValue + '</span>');
 			target.textfill();
 		}
+	},
+	updateDonationAmount: function (donationAmount) {
+		var counter = new CountUp("donationAmount", templateApp.currentDonationAmount, donationAmount, 2);
+		counter.start(function () {
+			originAmount = targetAmount;
+		});
 	}
 }
 
