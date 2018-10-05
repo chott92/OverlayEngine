@@ -41,6 +41,9 @@ var templateApp = {
 		if (data.nextRun) {
 			templateApp.updateField('nextRun', data.nextRun.game);
 		}
+		if (data.afterNextRun) {
+			templateApp.updateField('afterNextRun', data.afterNextRun.game);
+		}
 	},
 	updateField: function (divId, newValue) {
 		if (document.getElementById(divId)) {
